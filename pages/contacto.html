@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Pizza C&C</title>
+
+   <!-- Cdn Font Awesome   -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!--  Estilos CSS propios   -->
+   <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+   <!-- Sección encabezado  -->
+
+   <header class="header">
+
+      <section class="flex">
+
+         <a href="../index.html" class="logo"> <img src="../images/logo.png" alt="Logo Pizza C&C."></a>
+
+         <nav class="navbar">
+            <a href="../index.html">Inicio</a>
+            <a href="../pages/nosotros.html">Nosotros</a>
+            <a href="../pages/menu.html">Menú</a>
+            <a href="../pages/contacto.html">Contacto</a>
+         </nav>
+
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="cart-btn" class="fas fa-shopping-cart"><span id="cart-count">(0)</span></div>
+         </div>
+
+      </section>
+
+   </header>
+   <!-- Fin sección encabezado -->
+
+   <!-- Carrito -->
+   <section class="shopping-cart" id="carrito">
+      <div id="close-cart"><span>CERRAR</span></div>
+      <h3 id="mensaje-vacio">¡El carrito está vacío!</h3>
+
+      <table id="lista-carrito">
+         <thead>
+            <tr>
+               <th>Imágen</th>
+               <th>Nombre</th>
+               <th>Precio</th>
+               <th>Cantidad</th>
+            </tr>
+         </thead>
+         <tbody></tbody>
+      </table>
+      <div class="principal">
+         <p class="carrito-total">Total: $ <span id="total-pagar"></span> </p>
+         <a id="vaciar-carrito" class="button btn">Vaciar carrito</a>
+         <a href="" id="pedir-whatsapp" class="btn ">Pedir por Whatsapp</a>
+      </div>
+   </section>
+
+   <!-- Fin Carrito -->
+
+
+   <section class="contacto" id="contacto">
+
+      <h1 class="heading anim-titulo">Contacto</h1>
+
+      <form id="form-contacto">
+
+         <div class="flex">
+            <div class="inputBox">
+               <label>Nombre y apellido:</label>
+               <input type="text" name="name" class="box" required placeholder="Ingresá tu nombre" maxlength="20"
+                  id="nombre-contacto" onkeyup="validarNombre()"> <span id="error-nombre"></span>
+            </div>
+            <div class="inputBox">
+               <label>Teléfono:</label>
+               <input type="number" name="number" class="box" required placeholder="Ingresá tu teléfono" min="0"
+                  id="telefono-contacto" onkeyup="validarTelefono()"> <span id="error-tel"></span>
+            </div>
+            <div class="inputBox">
+               <label>E-mail:</label>
+               <input type="email" name="email" class="box" required placeholder="Ingresá tu correo electrónico" min="0"
+                  id="email-contacto" onkeyup="validarEmail()"> <span id="error-email"></span>
+            </div>
+            <div class="inputBox">
+               <label>Asunto:</label>
+               <input type="text" name="asunto" class="box" required placeholder="Ingresá el asunto" maxlength="20"
+                  id="asunto-contacto" onkeyup="validarAsunto()"> <span id="error-asunto"></span>
+            </div>
+            <div class="inputText">
+               <label>Mensaje:</label>
+               <textarea cols="100" rows="10" class="box" required id="mensaje-contacto"
+                  onkeyup="validarMensaje()"></textarea> <span id="error-mensaje"></span>
+            </div>
+         </div>
+
+         <input type="submit" value="Enviar" class="btn" name="enviar" id="enviar">
+         <span id="error-envio"></span>
+
+      </form>
+
+   </section>
+
+
+
+   <section class="footer">
+
+      <div class="box-container">
+
+         <div class="box">
+            <i class="fas fa-phone"></i>
+            <h3>Teléfonos</h3>
+            <p>+123-456-7890</p>
+            <p>+111-222-3333</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Dirección</h3>
+            <p>Calle Falsa 123</p>
+            <p>Argentina</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-clock"></i>
+            <h3>Horarios</h3>
+            <p>Lunes a Domingo</p>
+            <p>07:00am a 00:10pm</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-envelope"></i>
+            <h3>Correo Electrónico</h3>
+            <p>pedidos@pizzascyc.com</p>
+            <p>reclamos@pizzascyc.com</p>
+         </div>
+
+
+      </div>
+
+      <div class="credit">
+         &copy; copyright @2023 por <span>Matías Flores</span> | Todos los derechos reservados.
+      </div>
+
+   </section>
+
+   <!-- fin footer -->
+
+   <!-- links archivos javascript  -->
+   <script src="../js/validar.js"></script>
+   <script src="../js/carrito.js"></script>
+   <script src="../js/script.js"></script>
+
+</body>
+
+</html>

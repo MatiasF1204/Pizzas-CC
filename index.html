@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Pizza C&C</title>
+
+   <!-- Cdn Font Awesome   -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!--  Estilos CSS propios   -->
+   <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+   <!-- Sección encabezado  -->
+
+   <header class="header">
+
+      <section class="flex">
+
+         <a href="index.html" class="logo"> <img src="images/logo.png" alt="Logo Pizza C&C."></a>
+
+         <nav class="navbar">
+            <a href="./index.html">Inicio</a>
+            <a href="./pages/nosotros.html">Nosotros</a>
+            <a href="./pages/menu.html">Menú</a>
+            <a href="./pages/contacto.html">Contacto</a>
+         </nav>
+
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="cart-btn" class="fas fa-shopping-cart"><span id="cart-count">(0)</span></div>
+         </div>
+
+      </section>
+
+   </header>
+
+   <!-- Fin sección encabezado -->
+
+   <!-- carrito -->
+   <section class="shopping-cart" id="carrito">
+      <div id="close-cart"><span>CERRAR</span></div>
+      <h3 id="mensaje-vacio">¡El carrito está vacío!</h3>
+
+      <table id="lista-carrito">
+         <thead>
+            <tr>
+               <th>Imágen</th>
+               <th>Nombre</th>
+               <th>Precio</th>
+               <th>Cantidad</th>
+            </tr>
+         </thead>
+         <tbody></tbody>
+      </table>
+      <div class="principal">
+         <p class="carrito-total">Total: $ <span id="total-pagar"></span> </p>
+         <a id="vaciar-carrito" class="button btn">Vaciar carrito</a>
+         <a href="" id="pedir-whatsapp" class="btn ">Pedir por Whatsapp</a>
+      </div>
+   </section>
+   <!-- fin del carrito -->
+
+
+
+   <div class="home-bg">
+
+      <section class="home" id="home">
+
+         <div class="slide-container">
+
+            <div class="slide active">
+               <div class="image">
+                  <div class="girar">
+                     <img src="./images/home-img-1.png" alt="">
+                  </div>
+               </div>
+               <div class="content">
+                  <h3>Riquísima Pizza Española</h3>
+                  <div class="fas fa-angle-left" onclick="prev()"></div>
+                  <div class="fas fa-angle-right" onclick="next()"></div>
+               </div>
+            </div>
+
+            <div class="slide">
+               <div class="image">
+                  <div class="girar">
+                     <img src="./images/home-img-2.png" alt="">
+                  </div>
+               </div>
+               <div class="content">
+                  <h3>Deliciosa con Morroncito y Jamón</h3>
+                  <div class="fas fa-angle-left" onclick="prev()"></div>
+                  <div class="fas fa-angle-right" onclick="next()"></div>
+               </div>
+            </div>
+
+            <div class="slide">
+               <div class="image">
+                  <div class="girar">
+                     <img src="./images/home-img-3.png" alt="">
+                  </div>
+               </div>
+               <div class="content">
+                  <h3>Cuatro Quesos y algo más</h3>
+                  <div class="fas fa-angle-left" onclick="prev()"></div>
+                  <div class="fas fa-angle-right" onclick="next()"></div>
+               </div>
+            </div>
+
+         </div>
+
+      </section>
+
+   </div>
+
+   <section id="menu" class="menu menu-home">
+
+      <h1 class="heading heading-home anim-titulo">¡TOP 3 MÁS VENDIDAS!</h1>
+
+      <div class="box-container container" id="lista-pizzas">
+
+         <div class="box card">
+            <img src="../images/pizza-1.jpg" alt="" class="imagen-pizza">
+            <div class="info-card">
+               <p class="precio"><span>$8700</span></p>
+               <h4 class="nombre">PIZZA 1</h4>
+               <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur
+                  adipisicing elit.
+               </p>
+               <input type="submit" value="Añadir al carrito" name="add_to_cart" class="btn agregar-carrito"
+                  data-id="1">
+            </div>
+         </div>
+
+         <div class="box card">
+            <img src="../images/pizza-2.jpg" alt="" class="imagen-pizza">
+            <div class="info-card">
+               <p class="precio"><span>$7200</span></p>
+               <h4 class="nombre">PIZZA 2</h4>
+               <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur
+                  adipisicing elit.
+               </p>
+               <input type="submit" value="Añadir al carrito" name="add_to_cart" class="btn agregar-carrito"
+                  data-id="2">
+            </div>
+         </div>
+
+         <div class="box card">
+            <img src="../images/pizza-3.jpg" alt="" class="imagen-pizza">
+            <div class="info-card">
+               <p class="precio"><span>$9000</span></p>
+               <h4 class="nombre">PIZZA 3</h4>
+               <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit sit amet consectetur
+                  adipisicing elit.
+               </p>
+               <input value="Añadir al carrito" name="add_to_cart" class="btn agregar-carrito"
+                  data-id="3">
+            </div>
+         </div>
+      </div>
+
+   </section>
+
+
+
+   <!-- comienzo faq  -->
+
+   <section class="faq" id="faq">
+
+      <h1 class="heading anim-titulo">PREGUNTAS FRECUENTES</h1>
+
+      <div class="accordion-container">
+
+         <div class="accordion active">
+            <div class="accordion-heading">
+               <span>¿Cómo funciona?</span>
+               <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accrodion-content">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quas. Quidem minima veniam accusantium
+               maxime, doloremque iusto deleniti veritatis quos.
+            </p>
+         </div>
+
+         <div class="accordion">
+            <div class="accordion-heading">
+               <span>¿Qué demora tiene el envío?</span>
+               <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accrodion-content">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quas. Quidem minima veniam accusantium
+               maxime, doloremque iusto deleniti veritatis quos.
+            </p>
+         </div>
+
+         <div class="accordion">
+            <div class="accordion-heading">
+               <span>¿Qué cantidades puedo ordenar?</span>
+               <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accrodion-content">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quas. Quidem minima veniam accusantium
+               maxime, doloremque iusto deleniti veritatis quos.
+            </p>
+         </div>
+
+         <div class="accordion">
+            <div class="accordion-heading">
+               <span>¿Qué promociones existen?</span>
+               <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accrodion-content">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quas. Quidem minima veniam accusantium
+               maxime, doloremque iusto deleniti veritatis quos.
+            </p>
+         </div>
+
+
+         <div class="accordion">
+            <div class="accordion-heading">
+               <span>¿Cómo puedo pagar con Bitcoin?</span>
+               <i class="fas fa-angle-down"></i>
+            </div>
+            <p class="accrodion-content">
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, quas. Quidem minima veniam accusantium
+               maxime, doloremque iusto deleniti veritatis quos.
+            </p>
+         </div>
+      </div>
+   </section>
+
+   <!-- fin faq  -->
+
+   <!-- comienzo footer  -->
+
+   <section class="location">
+      <iframe
+         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.8580521612535!2d-58.76656361722977!3d-34.65828760314897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9512dd8aeb59%3A0xc78ff3fe9b8c9677!2sCalle%20falsa%20123%2C%20Paso%20del%20Rey%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1684453781965!5m2!1sen!2sar"
+         width="300" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+         referrerpolicy="no-referrer-when-downgrade"></iframe>
+   </section>
+
+
+   <section class="footer">
+
+      <div class="box-container">
+
+         <div class="box">
+            <i class="fas fa-phone"></i>
+            <h3>Teléfonos</h3>
+            <p>+123-456-7890</p>
+            <p>+111-222-3333</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Dirección</h3>
+            <p>Calle Falsa 123</p>
+            <p>Argentina</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-clock"></i>
+            <h3>Horarios</h3>
+            <p>Lunes a Domingo</p>
+            <p>07:00am a 00:10pm</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-envelope"></i>
+            <h3>Correo Electrónico</h3>
+            <p>pedidos@pizzascyc.com</p>
+            <p>reclamos@pizzascyc.com</p>
+         </div>
+
+      </div>
+
+      <div class="credit">
+         &copy; copyright @2023 por <span>Matías Flores</span> | Todos los derechos reservados.
+      </div>
+
+   </section>
+
+   <!-- fin footer -->
+
+   <!-- links archivos javascript  -->
+   <script src="./js/carrito.js"></script>
+   <script src="./js/script.js"></script>
+
+
+</body>
+
+</html>
