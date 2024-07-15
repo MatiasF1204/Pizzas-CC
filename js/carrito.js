@@ -10,6 +10,7 @@ const totalPagar = document.querySelector('#total-pagar');
 const carritoTotal = document.querySelector('.carrito-total');
 let articulosCarrito = [];
 
+document.addEventListener('DOMContentLoaded', cargarCarritoLocalStorage);
 cargarEventListeners();
 
 function cargarEventListeners() {
@@ -28,7 +29,7 @@ function cargarEventListeners() {
         actualizarContadorCarrito();
         carritoHTML();
         actualizarVistaCarrito();
-
+        guardarCarritoLocalStorage();
     });
 }
 
@@ -40,6 +41,7 @@ function agregarPizza(e) {
         const pizzaSeleccionada = e.target.parentElement.parentElement;
         leerDatos(pizzaSeleccionada);
         actualizarVistaCarrito();
+        guardarCarritoLocalStorage();
     }
 }
 
@@ -107,7 +109,6 @@ function carritoHTML() {
     actualizarTotal();
 }
 
-
 // Elimina productos repetidos del html
 function limpiarHTML() {
     while (cuerpoCarrito.firstChild) {
@@ -126,10 +127,10 @@ function eliminarPizza(e) {
         } else {
             articulosCarrito = articulosCarrito.filter(pizza => pizza.id !== pizzaId);
         }
-
         carritoHTML();
         actualizarContadorCarrito();
         actualizarVistaCarrito();
+        guardarCarritoLocalStorage();
     }
 }
 // Actualizar el contador del carrito
@@ -160,6 +161,17 @@ function actualizarTotal() {
     const total = articulosCarrito.reduce((total, pizza) => total + pizza.cantidad * pizza.precio, 0);
     const totalFormateado = total.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     totalPagar.textContent = totalFormateado;
+}
+
+function guardarCarritoLocalStorage() {
+    localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+}
+
+function cargarCarritoLocalStorage() {
+    articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    carritoHTML();
+    actualizarVistaCarrito();
+    actualizarContadorCarrito();
 }
 
 
