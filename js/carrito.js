@@ -12,6 +12,8 @@ let articulosCarrito = [];
 
 document.addEventListener('DOMContentLoaded', cargarCarritoLocalStorage);
 cargarEventListeners();
+window.addEventListener('load', manejarCargaPagina);
+window.addEventListener('beforeunload', manejarCierrePagina);
 
 function cargarEventListeners() {
     // Inicializa la vista del carrito
@@ -174,4 +176,14 @@ function cargarCarritoLocalStorage() {
     actualizarContadorCarrito();
 }
 
+function limpiarCarritoLocalStorage() {
+    // Comprobar si la página está siendo recargada
+    if (!sessionStorage.getItem('is_reloading')) {
+        localStorage.removeItem('carrito');
+    }
+    sessionStorage.removeItem('is_reloading');
+}
 
+function manejarCargaPagina() {
+    sessionStorage.setItem('is_reloading', 'true');
+}
