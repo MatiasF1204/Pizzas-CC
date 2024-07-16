@@ -78,8 +78,8 @@ function leerDatos(pizza) {
 // Muestra el carrito en el HTML
 function carritoHTML() {
     limpiarHTML();
-
-    articulosCarritoPizzas.forEach(pizza => {
+    
+    articulosCarrito.forEach(pizza => {
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>
@@ -120,8 +120,8 @@ function limpiarHTML() {
 function eliminarPizza(e) {
     if (e.target.classList.contains('borrar-curso')) {
         const pizzaId = e.target.getAttribute('data-id');
-
-        const pizza = articulosCarritoPizzas.find(pizza => pizza.id === pizzaId);
+        
+        const pizza = articulosCarrito.find(pizza => pizza.id === pizzaId);
         if (pizza.cantidad > 1) {
             pizza.cantidad--;
         } else {
@@ -148,7 +148,7 @@ function actualizarVistaCarrito() {
         tablaCarrito.style.display = 'none';
         vaciarCarrito.style.display = 'none';
         pedirWhatsapp.style.display = 'none';
-    } else if (articulosCarritoPizzas.length >= 1) {
+    } else if (articulosCarrito.length >= 1){
         carritoTotal.style.display = 'block';
         mensajeVacio.style.display = 'none';
         tablaCarrito.style.display = 'table';
