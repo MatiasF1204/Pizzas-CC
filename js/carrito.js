@@ -148,7 +148,7 @@ function actualizarVistaCarrito() {
         tablaCarrito.style.display = 'none';
         vaciarCarrito.style.display = 'none';
         pedirWhatsapp.style.display = 'none';
-    } else if (articulosCarrito.length >= 1){
+    } else if (articulosCarritoPizzas.length >= 1){
         carritoTotal.style.display = 'block';
         mensajeVacio.style.display = 'none';
         tablaCarrito.style.display = 'table';
