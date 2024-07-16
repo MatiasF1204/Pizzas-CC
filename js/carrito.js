@@ -8,7 +8,7 @@ const pedirWhatsapp = document.querySelector('#pedir-whatsapp');
 const cartCount = document.querySelector('#cart-count');
 const totalPagar = document.querySelector('#total-pagar');
 const carritoTotal = document.querySelector('.carrito-total');
-let articulosCarritoPizzas = [];
+let articulosCarritoPizzas = []; // Nombre corregido del array
 
 document.addEventListener('DOMContentLoaded', cargarCarritoLocalStorage);
 cargarEventListeners();
@@ -59,17 +59,14 @@ function leerDatos(pizza) {
     // Verifica que la pizza ya exista en el carrito
     const existe = articulosCarritoPizzas.some(pizza => pizza.id === infoPizza.id);
     if (existe) { // Si existe le actualiza la cantidad
-        const pizzas = articulosCarritoPizzas.map(pizza => {
-            if (pizza.id === infoPizza.id) {
-                pizza.cantidad++;
-                return pizza;
-            } else {
-                return pizza;
+        articulosCarritoPizzas = articulosCarritoPizzas.map(p => {
+            if (p.id === infoPizza.id) {
+                p.cantidad++;
             }
+            return p;
         });
-        articulosCarritoPizzas = [...pizzas];
     } else {
-        articulosCarritoPizzas = [...articulosCarritoPizzas, infoPizza];
+        articulosCarritoPizzas.push(infoPizza);
     }
     actualizarContadorCarrito();
     carritoHTML();
@@ -79,7 +76,7 @@ function leerDatos(pizza) {
 function carritoHTML() {
     limpiarHTML();
     
-    articulosCarrito.forEach(pizza => {
+    articulosCarritoPizzas.forEach(pizza => {
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>
@@ -121,12 +118,8 @@ function eliminarPizza(e) {
     if (e.target.classList.contains('borrar-curso')) {
         const pizzaId = e.target.getAttribute('data-id');
         
-        const pizza = articulosCarrito.find(pizza => pizza.id === pizzaId);
-        if (pizza.cantidad > 1) {
-            pizza.cantidad--;
-        } else {
-            articulosCarritoPizzas = articulosCarritoPizzas.filter(pizza => pizza.id !== pizzaId);
-        }
+        articulosCarritoPizzas = articulosCarritoPizzas.filter(pizza => pizza.id !== pizzaId);
+        
         carritoHTML();
         actualizarContadorCarrito();
         actualizarVistaCarrito();
