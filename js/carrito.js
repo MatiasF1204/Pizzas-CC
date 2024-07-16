@@ -1,4 +1,4 @@
-const carrito = document.querySelector('#carrito');
+const carritoPizzas = document.querySelector('#carrito');
 const listaPizzas = document.querySelector('#lista-pizzas');
 const cuerpoCarrito = document.querySelector('#lista-carrito tbody');
 const mensajeVacio = document.querySelector('#mensaje-vacio');
@@ -8,12 +8,10 @@ const pedirWhatsapp = document.querySelector('#pedir-whatsapp');
 const cartCount = document.querySelector('#cart-count');
 const totalPagar = document.querySelector('#total-pagar');
 const carritoTotal = document.querySelector('.carrito-total');
-let articulosCarrito = [];
+let articulosCarritoPizzas = [];
 
 document.addEventListener('DOMContentLoaded', cargarCarritoLocalStorage);
 cargarEventListeners();
-window.addEventListener('load', manejarCargaPagina);
-window.addEventListener('beforeunload', manejarCierrePagina);
 
 function cargarEventListeners() {
     // Inicializa la vista del carrito
@@ -23,11 +21,11 @@ function cargarEventListeners() {
     listaPizzas.addEventListener('click', agregarPizza);
 
     // Elimina producto
-    carrito.addEventListener('click', eliminarPizza);
+    carritoPizzas.addEventListener('click', eliminarPizza);
 
     // Vaciar carrito
     vaciarCarrito.addEventListener('click', () => {
-        articulosCarrito = [];
+        articulosCarritoPizzas = [];
         actualizarContadorCarrito();
         carritoHTML();
         actualizarVistaCarrito();
@@ -59,9 +57,9 @@ function leerDatos(pizza) {
     };
 
     // Verifica que la pizza ya exista en el carrito
-    const existe = articulosCarrito.some(pizza => pizza.id === infoPizza.id);
+    const existe = articulosCarritoPizzas.some(pizza => pizza.id === infoPizza.id);
     if (existe) { // Si existe le actualiza la cantidad
-        const pizzas = articulosCarrito.map(pizza => {
+        const pizzas = articulosCarritoPizzas.map(pizza => {
             if (pizza.id === infoPizza.id) {
                 pizza.cantidad++;
                 return pizza;
@@ -69,9 +67,9 @@ function leerDatos(pizza) {
                 return pizza;
             }
         });
-        articulosCarrito = [...pizzas];
+        articulosCarritoPizzas = [...pizzas];
     } else {
-        articulosCarrito = [...articulosCarrito, infoPizza];
+        articulosCarritoPizzas = [...articulosCarritoPizzas, infoPizza];
     }
     actualizarContadorCarrito();
     carritoHTML();
@@ -80,8 +78,8 @@ function leerDatos(pizza) {
 // Muestra el carrito en el HTML
 function carritoHTML() {
     limpiarHTML();
-    
-    articulosCarrito.forEach(pizza => {
+
+    articulosCarritoPizzas.forEach(pizza => {
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>
@@ -122,12 +120,12 @@ function limpiarHTML() {
 function eliminarPizza(e) {
     if (e.target.classList.contains('borrar-curso')) {
         const pizzaId = e.target.getAttribute('data-id');
-        
-        const pizza = articulosCarrito.find(pizza => pizza.id === pizzaId);
+
+        const pizza = articulosCarritoPizzas.find(pizza => pizza.id === pizzaId);
         if (pizza.cantidad > 1) {
             pizza.cantidad--;
         } else {
-            articulosCarrito = articulosCarrito.filter(pizza => pizza.id !== pizzaId);
+            articulosCarritoPizzas = articulosCarritoPizzas.filter(pizza => pizza.id !== pizzaId);
         }
         carritoHTML();
         actualizarContadorCarrito();
@@ -135,21 +133,22 @@ function eliminarPizza(e) {
         guardarCarritoLocalStorage();
     }
 }
+
 // Actualizar el contador del carrito
 function actualizarContadorCarrito() {
-    const totalCantidad = articulosCarrito.reduce((total, pizza) => total + pizza.cantidad, 0);
+    const totalCantidad = articulosCarritoPizzas.reduce((total, pizza) => total + pizza.cantidad, 0);
     cartCount.textContent = `(${totalCantidad})`;
 }
 
 // Actualiza la vista del carrito
 function actualizarVistaCarrito() {
-    if (articulosCarrito.length === 0) {
+    if (articulosCarritoPizzas.length === 0) {
         mensajeVacio.style.display = 'block';
         carritoTotal.style.display = 'none';
         tablaCarrito.style.display = 'none';
         vaciarCarrito.style.display = 'none';
         pedirWhatsapp.style.display = 'none';
-    } else if (articulosCarrito.length >= 1){
+    } else if (articulosCarritoPizzas.length >= 1) {
         carritoTotal.style.display = 'block';
         mensajeVacio.style.display = 'none';
         tablaCarrito.style.display = 'table';
@@ -160,30 +159,18 @@ function actualizarVistaCarrito() {
 
 // Calcula y muestra el total a pagar
 function actualizarTotal() {
-    const total = articulosCarrito.reduce((total, pizza) => total + pizza.cantidad * pizza.precio, 0);
+    const total = articulosCarritoPizzas.reduce((total, pizza) => total + pizza.cantidad * pizza.precio, 0);
     const totalFormateado = total.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     totalPagar.textContent = totalFormateado;
 }
 
 function guardarCarritoLocalStorage() {
-    localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+    localStorage.setItem('carritoPizzas', JSON.stringify(articulosCarritoPizzas));
 }
 
 function cargarCarritoLocalStorage() {
-    articulosCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    articulosCarritoPizzas = JSON.parse(localStorage.getItem('carritoPizzas')) || [];
     carritoHTML();
     actualizarVistaCarrito();
     actualizarContadorCarrito();
-}
-
-function limpiarCarritoLocalStorage() {
-    // Comprobar si la página está siendo recargada
-    if (!sessionStorage.getItem('is_reloading')) {
-        localStorage.removeItem('carrito');
-    }
-    sessionStorage.removeItem('is_reloading');
-}
-
-function manejarCargaPagina() {
-    sessionStorage.setItem('is_reloading', 'true');
 }
